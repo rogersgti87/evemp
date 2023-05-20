@@ -2,7 +2,7 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build && cp vite.config.js dist/vite.config.js"
+        "build": "vite build"
     },
     "devDependencies": {
         "@popperjs/core": "^2.10.2",
