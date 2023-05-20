@@ -1,0 +1,378 @@
+body {
+    background: #F2F2F2;
+}
+
+
+/* Header + Logo */
+
+header {
+    padding: 10px 0;
+    background: #FA8072;
+}
+
+header .header-title h1 {
+    min-height: 29px;
+    font-size: 22px;
+    color: #FFF;
+    margin: 0;
+    padding: 0;
+}
+
+header .header-title .btn-primary {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    background: #FFF;
+    border: 0;
+    color: #111;
+    border-radius: 100%;
+}
+
+.logo img {
+    max-width: 190px;
+    padding: 10px;
+}
+
+
+/* Menu Lateral */
+
+.overlay {
+    display: block;
+    background: #000;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.navMenu {
+    background: #FFF;
+    position: absolute;
+    top: 0;
+    left: -10000px;
+    z-index: 99;
+    width: 100%;
+    height: auto;
+    padding-bottom: 15px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 0 50px rgb(0 0 0 / 44%);
+}
+
+.navMenu.open {
+    left: 0;
+}
+
+.navMenu .heading-block {
+    width: 100%;
+    padding: 5px 0 10px 15px;
+}
+
+.navMenu .heading-block h2 {
+    font-size: 19px;
+    margin: 0;
+    padding: 0;
+}
+
+.navMenu button.closeMenu {
+    position: absolute;
+    top: 4px;
+    right: 10px;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background: none;
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.navMenu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navMenu ul li {
+    display: list-item;
+    padding: 5px 10px;
+}
+
+.navMenu ul li a {
+    background: #F2F2F2;
+    color: #333;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.navMenu ul li a:hover {
+    background: #e2e2e2;
+    color: #111;
+    text-decoration: none;
+}
+
+.navMenu .info {
+    padding: 10px;
+}
+
+.navMenu .info .card {
+    margin: 0;
+    padding: 10px;
+    background: #FFF;
+    border: 1px solid #DDD;
+    border-radius: 5px;
+    box-shadow: none;
+    text-align: center;
+}
+
+.navMenu .info .card h2 {
+    font-size: 18px;
+}
+
+.navMenu .info .card p {
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+}
+
+.navMenu .info .card p a {
+    color: #111;
+}
+
+
+/* Menu Carrousel */
+
+.menu-categories {
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid #DDD;
+}
+
+.menu-categories .swiper-slide.categoria img {
+    width: 90px;
+    height: 90px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    border: 2px solid transparent;
+    transition: 0.3s all ease;
+}
+
+.menu-categories .swiper-slide.categoria img.active {
+    border: 2px solid #22cacc;
+}
+
+.menu-categories .swiper-slide.categoria p {
+    display: block;
+    margin: 0;
+    text-align: center;
+    font-size: 14px;
+    color: #111;
+}
+
+.swiper-wrapper .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    display: none;
+}
+
+.menu-categories .swiper-button-prev {
+    left: -40px;
+}
+
+.menu-categories .swiper-button-next {
+    right: -40px;
+}
+
+.menu-categories .swiper-container {
+    width: 100%;
+}
+
+.menu-categories .swiper-button-prev:after,
+.menu-categories .swiper-button-next:after {
+    font-size: 17px;
+    font-weight: bold;
+    font-family: "Font Awesome 5 Free";
+}
+
+.swiper-button-prev:after,
+.swiper-container-rtl .swiper-button-prev:after {
+    content: "\f137";
+}
+
+.swiper-button-next:after,
+.swiper-container-rtl .swiper-button-prev:after {
+    content: "\f138";
+}
+
+
+/* FILTERS */
+
+.section-filters {
+    margin-top: 4px;
+    padding: 10px 0;
+    background: #FFF;
+    border-top: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;
+}
+
+
+/* INFO Establishment */
+
+.section-info {
+    padding: 10px 0;
+}
+
+.section-info .card {
+    margin: 0;
+    padding: 10px;
+    background: #FFF;
+    border: 1px solid #DDD;
+    border-radius: 0;
+    box-shadow: none;
+    text-align: center;
+}
+
+.section-info .card h2 {
+    font-size: 18px;
+}
+
+.section-info .card p {
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+}
+
+.section-info .card p a {
+    color: #111;
+}
+
+
+/* Section Products */
+
+.section-products {
+    margin-top: 15px;
+}
+
+.section-products .title-categorie {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.section-products .card-product:hover {
+    border: 1px solid #BBB;
+}
+
+.section-products .card-product .card-body {
+    padding: 5px 10px;
+}
+
+.section-products .card-product picture {
+    max-width: 100px;
+}
+
+.section-products .card-product picture img {
+    border-radius: 5px;
+}
+
+.section-products .card-product .content {
+    padding: 0px 5px 0px 15px;
+}
+
+.section-products .card-product .content h4 {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 0 0 5px 0;
+}
+
+.section-products .card-product .content h4 a {
+    color: #111;
+}
+
+.section-products .card-product .content p {
+    font-size: 13px;
+    margin: 0 0 5px 0;
+}
+
+.section-products .card-product .content .price {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+    text-align: right;
+}
+
+@media screen and (min-width:980px) {
+    .section-products .card-product .content .price {
+        text-align: left;
+    }
+}
+
+.section-products .card-product .content .buttons {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+
+@media screen and (max-width:980px) {
+    .section-products .card-product .content .buttons {
+        display: none;
+    }
+}
+
+.section-products .card-product .content .buttons .btn-sm {
+    padding: 3px 7px;
+    font-size: 10px;
+}
+
+
+/* Modal Product */
+
+.modal-body-produto .content {
+    padding: 10px;
+}
+
+.modal-body-produto .content .heading-block {
+    position: relative;
+    margin: 0 0 10px 0;
+}
+
+.modal-body-produto .content .heading-block h1 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.modal-body-produto .content .heading-block button.close {
+    position: absolute;
+    top: -3px;
+    right: 0;
+}
+
+.modal-body-produto .content p {
+    font-size: 13px;
+    margin: 0 0 5px 0;
+}
+
+.modal-body-produto .content .price {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+    text-align: left;
+}
+
+.modal-body-produto .carousel-inner button.close {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    z-index: 99;
+    color: #FFF;
+    text-shadow: none;
+    opacity: 1;
+}

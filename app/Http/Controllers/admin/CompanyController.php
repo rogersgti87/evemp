@@ -327,7 +327,7 @@ class CompanyController extends Controller
         $data = $this->request->all();
 
         $validator = Validator::make($data, [
-            'document'      => "requiredunique:companies,document,$id",
+            'document'      => "required|unique:companies,document,$id",
             //'status'    => 'required',
         ]);
 
@@ -367,7 +367,12 @@ class CompanyController extends Controller
         $newCompany->image              = $data['image'];
         $newCompany->name               = $data['name'];
         $newCompany->description        = $data['description'];
-        $newCompany->status             = $data['status'];
+
+        if(\Auth::user()->type == 'Membro'){
+            unset($data['status']);
+        }else{
+            $newCompany->status             = $data['status'];
+        }
 
         try{
             $newCompany->save();

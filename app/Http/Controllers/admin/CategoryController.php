@@ -10,7 +10,6 @@ use Illuminate\Support\Str;
 use Image;
 use DB;
 use App\Models\Category;
-use App\Models\Post;
 use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
 use RuntimeException;
 use ResponseCache;

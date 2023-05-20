@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\MinistryController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\CompanyController;
 
-use App\Http\Controllers\front\PageController as FrontPage;
+use App\Http\Controllers\front\HomeController;
 use App\Http\Controllers\front\ContactController;
 
 /*
@@ -22,9 +23,13 @@ use App\Http\Controllers\front\ContactController;
 
 
 
-Route::get('/',[FrontPage::class, 'index']);
-Route::get('/contact',[ContactController::class,'index']);
+Route::group(['middleware' => 'doNotCacheResponse'], function(){
+    Route::get('/',[HomeController::class, 'index']);
+    Route::get('/register-user',[HomeController::class, 'registeruser']);
+    Route::post('/register-user',[HomeController::class, 'storeuser']);
+    Route::get('/contact',[ContactController::class,'index']);
 
+});
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
@@ -33,9 +38,8 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 
 
 Route::group(['prefix' => 'admin','middleware' => ['auth','doNotCacheResponse']], function(){
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    });
+
+    Route::get('/',[AdminController::class,'index']);
 
     Route::get('users',[UserController::class,'index']);
     Route::get('users/form',[UserController::class,'form']);

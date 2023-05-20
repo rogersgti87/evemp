@@ -32,6 +32,8 @@
 <link rel="stylesheet" href="{{ url('assets/admin/plugins/iconpicker/dist/fontawesome-5.11.2/css/all.min.css') }}">
 <link rel="stylesheet" href="{{ url('assets/admin/plugins/iconpicker/dist/iconpicker-1.5.0.css') }}">
 
+<link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -83,8 +85,10 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->
-              <li class="nav-item {{Request::segment(2) == 'companies' || Request::segment(2) == 'category' || Request::segment(2) == 'ministries' ? 'menu-open' : ''}}">
-                <a href="#" class="nav-link {{Request::segment(2) == 'companies' || Request::segment(2) == 'category' || Request::segment(2) == 'ministries' ? 'active' : ''}}">
+
+            @if(\Auth::user()->type == 'Usuario')
+              <li class="nav-item {{Request::segment(2) == 'companies' || Request::segment(2) == 'category' || Request::segment(2) == 'ministries' || Request::segment(2) == 'users' ? 'menu-open' : ''}}">
+                <a href="#" class="nav-link {{Request::segment(2) == 'companies' || Request::segment(2) == 'category' || Request::segment(2) == 'ministries' || Request::segment(2) == 'users' ? 'active' : ''}}">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Cadastros
@@ -92,39 +96,62 @@
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
+
                   <li class="nav-item">
                     <a href="{{url('admin/ministries')}}" class="nav-link  {{Request::segment(2) == 'ministries' ? 'active' : ''}}">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Ministérios</p>
                     </a>
                   </li>
-                  <li class="nav-item">
-                    <a href="{{url('admin/companies')}}" class="nav-link  {{Request::segment(2) == 'companies' ? 'active' : ''}}">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Empresas</p>
-                    </a>
-                  </li>
+
                   <li class="nav-item">
                     <a href="{{url('admin/category')}}" class="nav-link {{Request::segment(2) == 'category' ? 'active' : ''}}">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Categorias</p>
                     </a>
                   </li>
+
+                  <li class="nav-item">
+                    <a href="{{url('admin/companies')}}" class="nav-link  {{Request::segment(2) == 'companies' ? 'active' : ''}}">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Empresas</p>
+                    </a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a href="{{url('admin/users')}}" class="nav-link {{Request::segment(2) == 'users' ? 'active' : ''}}">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Usuários</p>
+                    </a>
+                  </li>
+
                 </ul>
               </li>
+                @endif
 
+                @if(\Auth::user()->type == 'Membro')
               <li class="nav-item">
                 <a href="{{url('admin/users')}}" class="nav-link {{Request::segment(2) == 'users' ? 'active' : ''}}">
                   <i class="nav-icon fas fa-th"></i>
-                  <p>Usuários</p>
+                  <p>Meu perfil</p>
                 </a>
               </li>
 
-              <a class="dropdown-item" href="{{ route('logout') }}"
-              onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-               {{ __('Logout') }}
-           </a>
+              <li class="nav-item">
+                <a href="{{url('admin/companies')}}" class="nav-link  {{Request::segment(2) == 'companies' ? 'active' : ''}}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Empresas</p>
+                </a>
+              </li>
+              @endif
+
+              <li class="nav-item">
+                <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                  <i class="nav-icon fas fa-sign-out-alt"></i>
+                  <p>Sair</p>
+                </a>
+              </li>
 
            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                @csrf
@@ -184,9 +211,19 @@
 
 <script src="{{ url('assets/admin/plugins/iconpicker/dist/iconpicker-1.5.0.js') }}"></script>
 
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json"></script>
+
 <!-- Custom JS-->
 <script src="{{ url('assets/admin/js/custom.js') }}"></script>
 
+<script>
+    var table = new DataTable('#users-datatable, #companies-datatable', {
+        language: {
+        url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json',
+    },
+    });
+</script>
 
 
 
