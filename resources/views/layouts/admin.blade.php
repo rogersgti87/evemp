@@ -137,12 +137,15 @@
                 </a>
               </li>
 
+              @if(\Auth::user()->status == 1)
               <li class="nav-item">
                 <a href="{{url('admin/companies')}}" class="nav-link  {{Request::segment(2) == 'companies' ? 'active' : ''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Empresas</p>
                 </a>
               </li>
+              @endif
+
               @endif
 
               <li class="nav-item">

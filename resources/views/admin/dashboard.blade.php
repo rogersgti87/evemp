@@ -49,7 +49,7 @@
                     <tbody>
 
                     @foreach($users as $row)
-                        <tr>
+                        <tr id="{{ $row->id }}" class="link-user" style="cursor:pointer;">
                             <td>{{$row->id}}</td>
                             <td>{{$row->name}}</td>
                             <td>{{date('d/m/Y H:i:s',strtotime($row->created_at))}}</td>
@@ -92,7 +92,7 @@
                     <tbody>
 
                     @foreach($companies as $row)
-                        <tr>
+                        <tr id="{{ $row->id }}" class="link-company" style="cursor:pointer;">
                             <td>{{$row->id}}</td>
                             <td>{{$row->name}}</td>
                             <td>{{date('d/m/Y H:i:s',strtotime($row->created_at))}}</td>
@@ -127,6 +127,36 @@
   <!-- /.content-wrapper -->
 
 
+@section('scripts')
 
+<script>
+
+  $(document).ready(function () {
+
+    $('.link-user').click(function(){
+
+        var url = "{{ url('admin/users/form?act=edit')}}";
+        var id  = $(this).attr('id');
+
+        window.location = url+'&id='+id;
+
+    });
+
+
+    $('.link-company').click(function(){
+
+        var url = "{{ url('admin/companies/form?act=edit')}}";
+        var id  = $(this).attr('id');
+
+        window.location = url+'&id='+id;
+
+    });
+
+    });
+
+</script>
+
+
+  @endsection
 
   @endsection
