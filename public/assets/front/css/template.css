@@ -258,51 +258,51 @@ header .header-title .btn-primary {
 
 /* Section Products */
 
-.section-products {
+.section-companies {
     margin-top: 15px;
 }
 
-.section-products .title-categorie {
+.section-companies .title-categorie {
     font-size: 18px;
     font-weight: bold;
 }
 
-.section-products .card-product:hover {
+.section-companies .card-product:hover {
     border: 1px solid #BBB;
 }
 
-.section-products .card-product .card-body {
+.section-companies .card-product .card-body {
     padding: 5px 10px;
 }
 
-.section-products .card-product picture {
+.section-companies .card-product picture {
     max-width: 100px;
 }
 
-.section-products .card-product picture img {
+.section-companies .card-product picture img {
     border-radius: 5px;
 }
 
-.section-products .card-product .content {
+.section-companies .card-product .content {
     padding: 0px 5px 0px 15px;
 }
 
-.section-products .card-product .content h4 {
-    font-size: 17px;
+.section-companies .card-product .content h4 {
+    font-size: 16px;
     font-weight: 500;
     margin: 0 0 5px 0;
 }
 
-.section-products .card-product .content h4 a {
+.section-companies .card-product .content h4 a {
     color: #111;
 }
 
-.section-products .card-product .content p {
+.section-companies .card-product .content p {
     font-size: 13px;
     margin: 0 0 5px 0;
 }
 
-.section-products .card-product .content .price {
+.section-companies .card-product .content .price {
     font-size: 16px;
     font-weight: bold;
     letter-spacing: -0.5px;
@@ -310,24 +310,24 @@ header .header-title .btn-primary {
 }
 
 @media screen and (min-width:980px) {
-    .section-products .card-product .content .price {
+    .section-companies .card-product .content .price {
         text-align: left;
     }
 }
 
-.section-products .card-product .content .buttons {
+.section-companies .card-product .content .buttons {
     position: absolute;
     right: 5px;
     bottom: 5px;
 }
 
 @media screen and (max-width:980px) {
-    .section-products .card-product .content .buttons {
+    .section-companies .card-product .content .buttons {
         display: none;
     }
 }
 
-.section-products .card-product .content .buttons .btn-sm {
+.section-companies .card-product .content .buttons .btn-sm {
     padding: 3px 7px;
     font-size: 10px;
 }

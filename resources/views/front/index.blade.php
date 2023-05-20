@@ -53,8 +53,8 @@
           @foreach($categories as $cat)
           <div class="swiper-slide categoria">
             <div id="categorie-{{$cat->id}}">
-              <img style="border-radius: 50%;border:1px solid #333;" src="{{$cat->image != '' && property_exists(json_decode($cat->image), 'original') ? url(json_decode($cat->image)->original) : ''}}" alt="{{$cat->name}}" onclick="produtoCategoria(this);" data-nome="{{$cat->name}}" data-id="{{$cat->id}}">
-              <p onclick="produtoCategoria(this);" data-nome="{{$cat->name}}" data-id="{{$cat->id}}">{{$cat->name}}</p>
+              <img style="border-radius: 50%;border:1px solid #333;" src="{{$cat->image != '' && property_exists(json_decode($cat->image), 'original') ? url(json_decode($cat->image)->original) : ''}}" alt="{{$cat->name}}" onclick="companyCategory(this);" data-nome="{{$cat->name}}" data-id="{{$cat->slug}}">
+              <p onclick="companyCategory(this);" data-nome="{{$cat->name}}" data-id="{{$cat->slug}}">{{$cat->name}}</p>
             </div>
           </div>
           @endforeach
@@ -66,14 +66,15 @@
     </nav>
     <div style="text-align:center;">
     <h1>Site em desenvolvimento!</h1>
+    <h4>Categoria: <strong id="selected-category">Todas</strong></h4>
     </div>
 
     <main>
-      <section class="section-products">
+      <section class="section-companies">
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <div id="preloader-product">
+              <div id="preloader-companies">
                 <div class="lds-ellipsis">
                   <div></div>
                   <div></div>
@@ -88,10 +89,10 @@
 
 
       <!-- Modal Product -->
-      <div class="modal fade" id="modal-produto">
+      <div class="modal fade" id="modal-company">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-body-produto"></div>
+            <div class="modal-body-company"></div>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
       </div><!-- /.modal -->
@@ -116,7 +117,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/04571ab3d2.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/0.9.0/jquery.mask.min.js" integrity="sha512-oJCa6FS2+zO3EitUSj+xeiEN9UTr+AjqlBZO58OPadb2RfqwxHpjTU8ckIC8F4nKvom7iru2s8Jwdo+Z8zm0Vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -213,24 +214,25 @@
 
   <script>
     $(document).ready(function() {
-      var url = '{{ url('produto-categoria') }}';
+      var url = '{{ url('getcompaniescategory') }}';
       $.get(url,
         $(this).html('Carregando...'),
         function(data) {
-          $(".section-products").html(data);
+          $(".section-companies").html(data);
         });
     });
-    $("#modal-produto").on("show.bs.modal", function(e) {
-      var url = '{{ url('modal-produto') }}' + '/' + e.relatedTarget.id;
+    $("#modal-company").on("show.bs.modal", function(e) {
+      var url = '{{ url('getcompany') }}' + '/' + e.relatedTarget.id;
+      console.log(e.relatedTarget.id);
       // var nome_produto = $(e.relatedTarget).data('nome');
       $.get(url,
         $(this)
         .addClass('modal-scrollfix')
-        .find('.modal-body-produto')
+        .find('.modal-body-company')
         .html('Carregando...'),
         function(data) {
           // $('.modal-title-produto').html(nome_produto);
-          $(".modal-body-produto").html(data);
+          $(".modal-body-company").html(data);
         });
     });
 
@@ -248,33 +250,36 @@
         });
     });
 
-    function produtoCategoria() {
-      var categoria_id = $(event.target).data('id');
+    function companyCategory() {
+      var category_id = $(event.target).data('id');
+      $('#selected-category').text(category_id.charAt(0).toUpperCase()
+  + category_id.slice(1));
+      console.log(category_id);
       // var categoria_nome = $(event.target).data('nome');
 
       $('.menu-categories img').removeClass('active');
-      $('#categorie-'+categoria_id).parent().find('img').addClass('active')
+      $('#category-'+category_id).parent().find('img').addClass('active')
 
 
-      if (categoria_id === undefined) {
-        var url = '{{ url('produto-categoria') }}';
+      if (category_id === undefined) {
+        var url = '{{ url('getcompaniescategory') }}';
       } else {
-        var url = '{{ url('produto-categoria') }}' + '/' + categoria_id;
+        var url = '{{ url('getcompaniescategory') }}' + '/' + category_id;
       }
       $.ajax({
         url: url,
         method: 'GET',
         beforeSend: function() {
-          preLoaderProduct();
+          preLoaderCompanies();
         },
         success: function(data) {
-          $(".section-products").html(data);
+          $(".section-companies").html(data);
         },
       });
     }
 
-    function preLoaderProduct() {
-      $('#preloader-product').show();
+    function preLoaderCompanies() {
+      $('#preloader-companies').show();
     }
   </script>
 
