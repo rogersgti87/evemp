@@ -197,7 +197,7 @@ $(document).ready(function () {
         theme: 'bootstrap4',
         placeholder: "Selecione a Categoria...",
         allowClear: true,
-        minimumInputLength: 2,
+        //minimumInputLength: 2,
         language: 'pt-BR',
         ajax: {
             url: '{{url("admin/category/getcategories")}}',
