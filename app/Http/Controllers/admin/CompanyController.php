@@ -190,10 +190,18 @@ class CompanyController extends Controller
 
         $data = $this->request->all();
 
+        $messages = [
+            'document.required' => 'O campo CPF/CNPJ é obrigatório',
+            'document.unique' => 'O campo CPF/CNPJ já está cadastrado para outra empresa',
+            'name.required' => 'O campo nome da empresa é obrigatório',
+            'description.required' => 'O Campo descrição da empresa é obrigatório',
+        ];
+
         $validator = Validator::make($data, [
             'document'     => "required|unique:companies,document",
-            //'status'    => 'required',
-        ]);
+            'name'          => "required",
+            'description'   => "required",
+        ],$messages);
 
         if( $validator->fails() ){
             return response()->json($validator->errors()->first(), 422);
@@ -326,10 +334,18 @@ class CompanyController extends Controller
 
         $data = $this->request->all();
 
+        $messages = [
+            'document.required' => 'O campo CPF/CNPJ é obrigatório',
+            'document.unique' => 'O campo CPF/CNPJ já está cadastrado para outra empresa',
+            'name.required' => 'O campo nome da empresa é obrigatório',
+            'description.required' => 'O Campo descrição da empresa é obrigatório',
+        ];
+
         $validator = Validator::make($data, [
             'document'      => "required|unique:companies,document,$id",
-            //'status'    => 'required',
-        ]);
+            'name'          => "required",
+            'description'   => "required",
+        ],$messages);
 
         if( $validator->fails() ){
             return response()->json($validator->errors()->first(), 422);
