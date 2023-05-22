@@ -101,6 +101,7 @@ class HomeController extends Controller
                                 'co.document','co.name','co.description','co.telephone','co.telephone',
                                 'co.whatsapp','co.instagram','co.facebook','co.youtube','co.site','co.google_maps',
                                 'co.slug as company_slug','co.image','co.status','ca.slug','ca.name as category_name')
+                                ->where('status',1)
                                 ->where('ca.slug',$slug)
                                 ->get();
 
@@ -112,6 +113,7 @@ class HomeController extends Controller
                                 'co.document','co.name','co.description','co.telephone','co.telephone',
                                 'co.whatsapp','co.instagram','co.facebook','co.youtube','co.site','co.google_maps',
                                 'co.slug as company_slug','co.image','co.status','ca.slug','ca.name as category_name')
+                                ->where('status',1)
                                 ->get();
         }
 
