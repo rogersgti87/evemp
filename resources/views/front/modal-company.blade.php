@@ -32,7 +32,7 @@
 
   <div class="heading-block">
     <div style="border:#333 solid 1px; text-align:center;">
-    <img class="img-fluid" src="{{ $company->image_thumb != null ? url("$company->image_thumb") : url('assets/admin/img/thumb.png')}}" alt="{{ $company->name }}" style="max-height:99px;">
+    <img class="img-fluid" src="{{ $company->image_original != null ? url("$company->image_original") : url('assets/admin/img/thumb.png')}}" alt="{{ $company->name }}" style="max-height:99px;">
     </div>
   <h4 style="text-align: center;">{{$company->name}}</h4>
 </div>
@@ -66,6 +66,27 @@
 
           </div>
           <div class="tab-pane fade" id="custom-tabs-two-profile" role="tabpanel" aria-labelledby="custom-tabs-two-profile-tab">
+
+            <div class="card card-danger">
+                <div class="card-header">
+                <h4 class="card-title">Contato</h4>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Telefone: {{ $company->telephone }}</li>
+                        <li>Whatsapp: {{ $company->whatsapp }}</li>
+                        <li>E-mail: {{ $company->email }}</li>
+                    </ul>
+
+                    <ul>
+                        <li>Facebook: <a href="{{$company->facebook }}" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li>Instagram: <a href="{{$company->instagram }}" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                        <li>Youtube: <a href="{{$company->youtube }}" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                    </ul>
+
+                </div>
+                </div>
+
             <div class="card card-danger">
                 <div class="card-header">
                 <h4 class="card-title">Localização</h4>
