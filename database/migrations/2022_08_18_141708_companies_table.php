@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('youtube')->nullable();
             $table->string('site')->nullable();
-            $table->string('google_maps')->nullable();
+            $table->text('google_maps')->nullable();
             $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->integer('status')->default(0);
