@@ -257,6 +257,7 @@ class CategoryController extends Controller
         $category = $this->request->input('category');
 
         $result = Category::whereraw("name LIKE '%$category%'")
+        ->orderby('name','ASC')
         ->take(20)
         ->get();
         return response()->json($result);
