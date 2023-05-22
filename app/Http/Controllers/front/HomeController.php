@@ -22,7 +22,7 @@ class HomeController extends Controller
 
     public function index(){
 
-        $categories = Category::where('status',1)->get();
+        $categories = Category::where('status',1)->orderby('name','ASC')->get();
 
         return view('front.index', compact('categories'));
     }
