@@ -11,6 +11,7 @@ use Image;
 use DB;
 use App\Models\Category;
 use App\Models\CompanyCategory;
+use App\Models\CompanyImage;
 use App\Models\Company;
 use App\Models\User;
 use RuntimeException;
@@ -195,12 +196,16 @@ class CompanyController extends Controller
             'document.unique' => 'O campo CPF/CNPJ já está cadastrado para outra empresa',
             'name.required' => 'O campo nome da empresa é obrigatório',
             'description.required' => 'O Campo descrição da empresa é obrigatório',
+            'telephone.required' => 'O Campo Telefone é obrigatório',
+            'whatsapp.required' => 'O Campo Whatsapp é obrigatório',
         ];
 
         $validator = Validator::make($data, [
             'document'     => "required|unique:companies,document",
             'name'          => "required",
             'description'   => "required",
+            'telephone'     => "required",
+            'whatsapp'      => "required",
         ],$messages);
 
         if( $validator->fails() ){
@@ -339,12 +344,16 @@ class CompanyController extends Controller
             'document.unique' => 'O campo CPF/CNPJ já está cadastrado para outra empresa',
             'name.required' => 'O campo nome da empresa é obrigatório',
             'description.required' => 'O Campo descrição da empresa é obrigatório',
+            'telephone.required' => 'O Campo Telefone é obrigatório',
+            'whatsapp.required' => 'O Campo Whatsapp é obrigatório',
         ];
 
         $validator = Validator::make($data, [
             'document'      => "required|unique:companies,document,$id",
             'name'          => "required",
             'description'   => "required",
+            'telephone'     => "required",
+            'whatsapp'      => "required",
         ],$messages);
 
         if( $validator->fails() ){
@@ -437,6 +446,47 @@ class CompanyController extends Controller
             return response()->json('Erro interno, favor comunicar ao administrador', 500);
         }
 
+
+        return response()->json(true, 200);
+
+
+    }
+
+
+    public function showImages($company_id){
+
+        $images = CompanyImage::where('company_id',$company_id)->get();
+        return response()->json($images);
+    }
+
+    public function upload($company_id){
+
+        $image     = $this->request->file('file');
+        $imageName = $image->getClientOriginalName();
+        $extension = $this->request->file('file')->extension();
+        $newName   = md5($imageName).date('ymdhis').'.'.$extension;
+
+        $image->move(storage_path('app/public/photos').'/'.\Auth::user()->id,$newName);
+
+        $imageUpload                = new CompanyImage();
+        $imageUpload->company_id    = $company_id;
+        $imageUpload->image         = 'storage/photos/'.\Auth::user()->id.'/'.$newName;
+        $imageUpload->save();
+        return response()->json(['success'=>$imageName]);
+
+    }
+
+    public function removeImage($id){
+
+
+        $image = CompanyImage::find($id);
+
+        $exp = explode('/',$image->image);
+        $path_image = $exp['1'].'/'.$exp['2'].'/'.$exp['3'];
+
+        unlink(storage_path('app/public/'.$path_image));
+
+        $image->delete();
 
         return response()->json(true, 200);
 

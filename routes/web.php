@@ -73,6 +73,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth','doNotCacheResponse']]
     Route::put('companies/{id}',[CompanyController::class,'update']);
     Route::post('companies/copy',[CompanyController::class,'copy']);
     Route::delete('companies',[CompanyController::class,'destroy']);
+    Route::get('companies/images/{company_id}',[CompanyController::class,'showimages']);
+    Route::post('companies/images/{company_id}',[CompanyController::class,'upload']);
+    Route::delete('companies/images/{id}',[CompanyController::class,'removeimage']);
 
 });
 

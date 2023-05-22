@@ -1,11 +1,22 @@
-{{-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     </ol>
     <div class="carousel-inner" style="background:rgb(133, 125, 125);text-align: center;">
-      <div class="carousel-item active">
-        <img class="img-fluid" src="{{ $company->image_thumb != null ? url("$company->image_thumb") : url('assets/admin/img/thumb.png')}}" alt="{{ $company->name }}">
-      </div>
+
+        @foreach($company_image as $ci)
+        @if($loop->first)
+        <div class="carousel-item active">
+            <img class="img-fluid" src="{{ $ci->image != null ? url("$ci->image") : url('assets/admin/img/thumb.png')}}" alt="{{ $ci->image }}" style="height:300px;">
+        </div>
+        @else
+        <div class="carousel-item">
+            <img class="img-fluid" src="{{ $ci->image != null ? url("$ci->image") : url('assets/admin/img/thumb.png')}}" alt="{{ $ci->image }}" style="height:300px;">
+        </div>
+        @endif
+        @endforeach
 
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -17,14 +28,51 @@
       <span class="sr-only">Próximo</span>
     </a>
 
-  </div> --}}
+  </div>
 
-  <div class="content">
-    <div class="heading-block">
-        <div style="background-color:#ccc; text-align:center;">
-        <img class="img-fluid" src="{{ $company->image_thumb != null ? url("$company->image_thumb") : url('assets/admin/img/thumb.png')}}" alt="{{ $company->name }}">
-        </div>
-      <h2 style="text-align: center;">{{$company->name}}</h2>
+  <div class="heading-block">
+    <div style="border:#333 solid 1px; text-align:center;">
+    <img class="img-fluid" src="{{ $company->image_thumb != null ? url("$company->image_thumb") : url('assets/admin/img/thumb.png')}}" alt="{{ $company->name }}" style="max-height:99px;">
     </div>
-    <p>{!! $company->description !!}</p>
-  </div><!-- content -->
+  <h4 style="text-align: center;">{{$company->name}}</h4>
+</div>
+
+  <div class="col-12 col-sm-12">
+    <div class="card card-primary card-tabs">
+      <div class="card-header p-0 pt-1">
+        <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="custom-tabs-two-home-tab" data-toggle="pill" href="#custom-tabs-two-home" role="tab" aria-controls="custom-tabs-two-home" aria-selected="true">Sobre a empresa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="custom-tabs-two-profile-tab" data-toggle="pill" href="#custom-tabs-two-profile" role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false">Contato</a>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="card-body">
+        <div class="tab-content" id="custom-tabs-two-tabContent">
+          <div class="tab-pane fade show active" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
+
+            <div class="card card-danger">
+            <div class="card-header">
+            <h4 class="card-title">Descrição</h4>
+            </div>
+            <div class="card-body">
+                {!! $company->description !!}
+            </div>
+            </div>
+
+          </div>
+          <div class="tab-pane fade" id="custom-tabs-two-profile" role="tabpanel" aria-labelledby="custom-tabs-two-profile-tab">
+             Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc euismod pellentesque diam.
+          </div>
+        </div>
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+
+
+

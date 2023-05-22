@@ -5,10 +5,10 @@ setTimeout(function() {   //calls click event after a certain time
 
 
 // //Mask
-$('#telephone').mask('(00)0000-00000');
-$('#telephone2').mask('(00)0000-0000');
-$('#celular').mask('(00)0000-000000');
-$('#whatsapp').mask('(00)0000-00000');
+$('#telephone').mask('(00)00000-0000');
+$('#telephone2').mask('(00)00000-000');
+$('#celular').mask('(00)00000-00000');
+$('#whatsapp').mask('(00)00000-0000');
 $('#cpf').mask('000.000.000-00', {reverse: true});
 $('#cnpj').mask('00.000.000/0000-00', {reverse: true});
 $('.money').mask("#.##0,00", {reverse: true});

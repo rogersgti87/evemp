@@ -2,7 +2,6 @@
 
 @section('content')
 
-
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -39,6 +38,7 @@
             </div>
 
     <form class="form">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <div class="col-md-12">
         <div class="form-row">
@@ -57,6 +57,65 @@
                     </fieldset>
 
                     </div>
+
+                    <div class="col-md-12 col-sm-12">
+                        <fieldset>
+                            <legend>Galeria de Fotos</legend>
+
+                            <div class="card-body">
+                                <div id="actions" class="row">
+                                  <div class="col-lg-6">
+                                    <div class="btn-group w-100">
+                                      <span class="btn btn-success col fileinput-button">
+                                        <i class="fas fa-plus"></i>
+                                        <span>Selecionar Fotos</span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-6 d-flex align-items-center">
+                                    <div class="fileupload-process w-100">
+                                      <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                        <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="table table-striped files" id="previews">
+                                  <div id="template" class="row mt-2">
+                                    <div class="col-auto">
+                                        <span class="preview"><img src="data:," alt="" data-dz-thumbnail /></span>
+                                    </div>
+                                    <div class="col d-flex align-items-center">
+                                        <p class="mb-0">
+                                          <span class="lead" data-dz-name></span>
+                                          (<span data-dz-size></span>)
+                                        </p>
+                                        <strong class="error text-danger" data-dz-errormessage></strong>
+                                    </div>
+                                    <div class="col-4 d-flex align-items-center">
+                                        <div class="progress progress-striped active w-100" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                          <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                                        </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+
+
+                                  <!-- Show images -->
+                                    <div class="form-group col-md-12 col-sm-12 mt-5">
+                                        <fieldset>
+                                            <div class="row" id="load-images" style="height: 300px;overflow-y: scroll;"></div>
+                                        </fieldset>
+                                    </div>
+                                <!-- fim Show images -->
+                              </div>
+                              <!-- /.card-body -->
+
+                        </fieldset>
+
+
+                        </div>
 
                     <div class="col-md-12">
 
@@ -191,6 +250,8 @@ $(document).ready(function () {
 
     tinymce.init(editor_config);
 
+    loadImages();
+
 });
 
     $('#categories').select2({
@@ -298,7 +359,167 @@ $(document).ready(function () {
         });
 
 
-    </script>
+
+
+ // DropzoneJS Demo Code Start
+ Dropzone.autoDiscover = false
+
+// Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
+var previewNode = document.querySelector("#template")
+previewNode.id = ""
+var previewTemplate = previewNode.parentNode.innerHTML
+previewNode.parentNode.removeChild(previewNode)
+
+var urlUpload  = "{{ url('admin/companies/images/') }}";
+var company_id = "{{ Request::get('id') }}";
+
+var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+  url: urlUpload+'/'+company_id, // Set the url
+  thumbnailWidth: 80,
+  thumbnailHeight: 80,
+  parallelUploads: 20,
+  previewTemplate: previewTemplate,
+  autoQueue: true, // Make sure the files aren't queued until manually added
+  previewsContainer: "#previews", // Define the container to display the previews
+  clickable: ".fileinput-button", // Define the element that should be used as click trigger to select files.
+  headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+  init: function() {
+		this.on('success', function(){
+			if (this.getQueuedFiles().length == 0 && this.getUploadingFiles().length == 0) {
+     				loadImages();
+			}
+	    });
+	},
+    queuecomplete: function () {
+        this.removeAllFiles();
+    }
+
+});
+
+
+function loadImages(){
+
+    var urlUpload  = "{{ url('admin/companies/images/') }}";
+    var company_id = "{{ Request::get('id') }}";
+
+    $.ajax({
+        url: urlUpload+'/'+company_id,
+        method:'GET',
+        success:function(data){
+            console.log(data);
+
+        $('#load-images').html('');
+
+    var html = '';
+    if(data.length > 0){
+        $.each(data, function(i, item) {
+
+        html += '<div class="col-md-2 p-2 text-center">';
+        html += `<img src="{{ url('${item.image}')}}" id="${item.id}" style="width:120px;height:120px;pointer-events: none;" class="img-thumbnail mb-1">`;
+        html += `<a href="#" onclick="removeImage(${item.id})" class="btn btn-sm btn-danger" style="width:100px;"><i class="fas fa-trash"></i></a>`;
+        html += '</div>';
+
+    });
+    }else{
+        html += '<div class="col-12 text-center">Nenhuma imagem foi enviada ainda.</div>';
+    }
+
+    $('#load-images').append(html);
+
+
+    },
+    error:function (xhr) {
+
+        if(xhr.status === 422){
+            Swal.fire({
+                text: xhr.responseJSON,
+                width:300,
+                icon: 'warning',
+                color: '#007bff',
+                confirmButtonColor: "#007bff",
+                showClass: {
+                    popup: 'animate__animated animate__wobble'
+                }
+            });
+        } else{
+            Swal.fire({
+                text: xhr.responseJSON,
+                width:300,
+                icon: 'error',
+                color: '#007bff',
+                confirmButtonColor: "#007bff",
+                showClass: {
+                    popup: 'animate__animated animate__wobble'
+                }
+            });
+        }
+
+
+    }
+});
+
+}
+
+
+function removeImage(id){
+
+    var urlUpload  = "{{ url('admin/companies/images/') }}";
+
+    Swal.fire({
+    title: 'Deseja remover esta imagem?',
+    text: "Você não poderá reverter isso!",
+    icon: 'question',
+    showCancelButton: true,
+    cancelButtonText: 'Cancelar',
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sim, deletar!'
+}).then((result) => {
+    if (result.value) {
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': "{{csrf_token()}}"
+                }
+            });
+        $.ajax({
+            url: urlUpload+'/'+id,
+            method:'DELETE',
+            success:function(data){
+                loadImages();
+            },
+            error:function (xhr) {
+
+                if(xhr.status === 422){
+                    Swal.fire({
+                        text: xhr.responseJSON,
+                        icon: 'warning',
+                        showClass: {
+                            popup: 'animate__animated animate__wobble'
+                        }
+                    });
+                } else{
+                    Swal.fire({
+                        text: xhr.responseJSON,
+                        icon: 'error',
+                        showClass: {
+                            popup: 'animate__animated animate__wobble'
+                        }
+                    });
+                }
+
+
+            }
+        });
+
+    }
+});
+
+
+
+}
+
+
+</script>
 
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Company;
+use App\Models\CompanyImage;
 use App\Models\Category;
 use App\Models\Ministry;
 use App\Models\User;
@@ -45,12 +46,17 @@ class HomeController extends Controller
             'email.unique' => 'Já existe um membro registrado com esse e-mail',
             'password.required' => 'O Campo senha é obrigatório',
             'password.min' => 'O campo senha precisa ter 6 caracteres',
+            'password.confirmed' => 'As senhas estão diferentes',
+            'telephone.required' => 'O Campo Telefone é obrigatório',
+            'whatsapp.required' => 'O Campo Whatsapp é obrigatório',
         ];
 
         $validator = Validator::make($data, [
             'name'      => 'required',
             'email'     => "required|email|max:255|unique:users,email",
             'password'  => 'required|min:6|confirmed',
+            'telephone'     => "required",
+            'whatsapp'      => "required",
         ], $messages);
 
         if( $validator->fails() ){
@@ -125,7 +131,8 @@ class HomeController extends Controller
     }
 
     public function getCompany($slug){
-        $company = Company::where('slug',$slug)->first();
+        $company       = Company::where('slug',$slug)->first();
+        $company_image = CompanyImage::where('company_id',$company->id)->get();
 
         if(isJSON($company->image) == true){
             $company['image_thumb']    = property_exists(json_decode($company->image), 'thumb')    ? json_decode($company->image)->thumb : '';
@@ -134,7 +141,7 @@ class HomeController extends Controller
             $company['image_thumb']    = '';
             $company['image_original'] = '';
         }
-        return view('front.modal-company',compact('company'))->render();
+        return view('front.modal-company',compact('company','company_image'))->render();
     }
 
 }

@@ -34,6 +34,8 @@
 
 <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+<link rel="stylesheet" href="{{ url('assets/admin/plugins/dropzone/min/dropzone.min.css')}}">
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -216,6 +218,8 @@
 
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json"></script>
+
+<script src="{{ url('assets/admin/plugins/dropzone/min/dropzone.min.js') }}"></script>
 
 <!-- Custom JS-->
 <script src="{{ url('assets/admin/js/custom.js') }}"></script>
