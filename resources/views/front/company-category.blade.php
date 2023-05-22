@@ -15,8 +15,8 @@
                             </picture>
                             <div class="flex-grow-1 content">
                                 <h4><a href="#" data-toggle="modal" id="{{$cc->company_slug}}" data-nome="{{$cc->name}}" data-id="{{$cc->id}}" data-target="#modal-company">{{ Str::limit($cc->name,45) }}</a></h4>
-                                <p><i class="fa-regular fa-phone-flip"></i> {{ $cc->telephone }}</p>
-                                <p><i class="fab fa-whatsapp"></i> {{ $cc->whatsapp }}</p>
+                                <p><i class="fa-light fa-phone"></i> {{ $cc->telephone }}</p>
+                                <p><i class="fa-brands fa-whatsapp"></i> {{ $cc->whatsapp }}</p>
 
                             </div>
                         </div>
