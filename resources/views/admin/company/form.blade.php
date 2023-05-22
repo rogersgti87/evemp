@@ -58,6 +58,7 @@
 
                     </div>
 
+                    @if(Request::get('id'))
                     <div class="col-md-12 col-sm-12">
                         <fieldset>
                             <legend>Galeria de Fotos</legend>
@@ -114,8 +115,9 @@
 
                         </fieldset>
 
-
                         </div>
+
+                        @endif
 
                     <div class="col-md-12">
 
@@ -250,7 +252,9 @@ $(document).ready(function () {
 
     tinymce.init(editor_config);
 
-    loadImages();
+    @if(Request::get('id'))
+        loadImages();
+    @endif
 
 });
 
