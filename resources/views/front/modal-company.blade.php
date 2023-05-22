@@ -71,7 +71,9 @@
                 <h4 class="card-title">Localização</h4>
                 </div>
                 <div class="card-body">
-                    {!! $company->google_maps !!}
+                    <div class="google-map">
+                        {!! $company->google_maps !!}
+                    </div>
                 </div>
                 </div>
           </div>
