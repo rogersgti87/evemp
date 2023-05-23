@@ -97,22 +97,26 @@ class HomeController extends Controller
         $companyCategories = DB::table('company_categories as cc')
                                 ->join('companies as co','cc.company_id','co.id')
                                 ->join('categories as ca','cc.category_id','ca.id')
+                                ->join('users as u','co.user_id','u.id')
                                 ->select('cc.id','cc.category_id as category_id','cc.company_id as company_id',
                                 'co.document','co.name','co.description','co.telephone','co.telephone',
                                 'co.whatsapp','co.instagram','co.facebook','co.youtube','co.site','co.google_maps',
                                 'co.slug as company_slug','co.image','co.status','ca.slug','ca.name as category_name')
+                                ->where('u.status',1)
                                 ->where('co.status',1)
                                 ->where('ca.slug',$slug)
                                 ->get();
 
         } else {
-            $companyCategories = DB::table('company_categories as cc')
+        $companyCategories = DB::table('company_categories as cc')
                                 ->join('companies as co','cc.company_id','co.id')
                                 ->join('categories as ca','cc.category_id','ca.id')
+                                ->join('users as u','co.user_id','u.id')
                                 ->select('cc.id','cc.category_id as category_id','cc.company_id as company_id',
                                 'co.document','co.name','co.description','co.telephone','co.telephone',
                                 'co.whatsapp','co.instagram','co.facebook','co.youtube','co.site','co.google_maps',
                                 'co.slug as company_slug','co.image','co.status','ca.slug','ca.name as category_name')
+                                ->where('u.status',1)
                                 ->where('co.status',1)
                                 ->get();
         }

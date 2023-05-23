@@ -66,7 +66,7 @@
       <div class="swiper-button-next"></div>
     </nav>
     <div style="text-align:center;">
-    <h1>Site em desenvolvimento!</h1>
+    {{-- <h1>Site em desenvolvimento!</h1> --}}
     <h4>Categoria: <strong id="selected-category">Todas</strong></h4>
     </div>
 
@@ -93,6 +93,11 @@
       <div class="modal fade" id="modal-company">
         <div class="modal-dialog">
           <div class="modal-content">
+            <div class="modal-header" style="background:#FA8072;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
             <div class="modal-body-company"></div>
           </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -102,10 +107,15 @@
     <div class="modal fade" id="modal-register-user">
         <div class="modal-dialog">
         <div class="modal-content">
+            <div class="modal-header" style="background:#FA8072;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
             <div class="modal-body-user"></div>
             <div class="modal-footer">
-                <button type="button" id="btn-salve-user" class="btn btn-primary">Cadastrar</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" id="btn-salve-user" class="btn btn-secondary">Cadastrar</button>
+                {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button> --}}
               </div>
         </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
