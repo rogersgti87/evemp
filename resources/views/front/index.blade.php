@@ -14,6 +14,12 @@
   <!-- custom original -->
   <link rel="stylesheet" href="{{asset('assets/front/css/custom.css?')}}{{rand(1,999)}}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Select2 -->
+<link rel="stylesheet" href="{{url('assets/admin/plugins/select2/css/select2.min.css')}}">
+<link rel="stylesheet" href="{{url('assets/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+
+
 </head>
 
 <body>
@@ -22,11 +28,24 @@
 
     <header>
       <div class="container">
-        <div class="row">
           <div class="col-12">
             <div class="header-title">
-              <h1 class="">EVEMP</h1>
-              <button type="button" class="btn btn-sm btn-primary openMenu"><i class="fa fa-bars"></i></button>
+                <div class="row">
+                <div class="col-3">
+                    <h1 class="">EVEMP</h1>
+                </div>
+              <div class="col-7">
+                    <select class="form-control select2bs4" name="categories" id="categories" style="width:100%">
+                        @if(isset($categories))
+                            @foreach($categories as $category)
+                                <option value="{{ $category->category_id }}" selected>{{ $category->category }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+              </div>
+              <div class="col-2 text-right">
+                <button type="button" class="btn btn-sm btn-primary openMenu"><i class="fa fa-bars"></i></button>
+              </div>
             </div>
           </div>
         </div>
@@ -54,8 +73,8 @@
           @foreach($categories as $cat)
           <div class="swiper-slide categoria">
             <div id="categorie-{{$cat->id}}">
-              <img style="border-radius: 50%;border:1px solid #333;" src="{{$cat->image != '' && property_exists(json_decode($cat->image), 'original') ? url(json_decode($cat->image)->original) : ''}}" alt="{{$cat->name}}" onclick="companyCategory(this);" data-nome="{{$cat->name}}" data-id="{{$cat->slug}}">
-              <p onclick="companyCategory(this);" data-nome="{{$cat->name}}" data-id="{{$cat->slug}}">{{$cat->name}}</p>
+              <img style="border-radius: 50%;border:1px solid #333;" src="{{$cat->image != '' && property_exists(json_decode($cat->image), 'original') ? url(json_decode($cat->image)->original) : ''}}" alt="{{$cat->name}}" onclick="companyCategory('{{$cat->slug}}');" data-nome="{{$cat->name}}" data-id="{{$cat->slug}}">
+              <p onclick="companyCategory('{{$cat->slug}}');" data-nome="{{$cat->name}}" data-id="{{$cat->slug}}">{{$cat->name}}</p>
             </div>
           </div>
           @endforeach
@@ -131,7 +150,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/0.9.0/jquery.mask.min.js" integrity="sha512-oJCa6FS2+zO3EitUSj+xeiEN9UTr+AjqlBZO58OPadb2RfqwxHpjTU8ckIC8F4nKvom7iru2s8Jwdo+Z8zm0Vg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" integrity="sha512-fD9DI5bZwQxOi7MhYWnnNPlvXdp/2Pj3XSTRrFs5FQa4mizyGLnJcN6tuvUS6LbmgN1ut+XGSABKvjN0H6Aoow==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<!-- Select2 -->
+<script src="{{url('assets/admin/plugins/select2/js/select2.full.min.js')}}"></script>
+<script src="{{url('assets/admin/plugins/select2/js/i18n/pt-BR.js')}}"></script>
 
   <!-- includes -->
   <script src="{{url('assets/front/js/swiper.js')}}"></script>
@@ -261,11 +282,14 @@
         });
     });
 
-    function companyCategory() {
-      var category_id = $(event.target).data('id');
+    function companyCategory(slug) {
+
+        //var category_id = $(event.target).data('id');
+        var category_id = slug;
+
+
       $('#selected-category').text(category_id.charAt(0).toUpperCase()
   + category_id.slice(1));
-      console.log(category_id);
       // var categoria_nome = $(event.target).data('nome');
 
       $('.menu-categories img').removeClass('active');
@@ -364,6 +388,44 @@
 
         });
 
+
+
+
+        $('#categories').select2({
+        theme: 'bootstrap4',
+        placeholder: "Selecione a Categoria...",
+        allowClear: true,
+        //minimumInputLength: 2,
+        language: 'pt-BR',
+        ajax: {
+            url: '{{url("getcategories")}}',
+            dataType: 'json',
+
+            data: function(params){
+                return {
+                    category: params.term,
+                }
+            },
+
+            processResults: function (data) {
+                return {
+                    results:  data.map(function (category) {
+                        return {
+                            text: category.name,
+                            id: category.slug
+                        };
+                    })
+                };
+            },
+            cache: true
+        }
+
+    });
+
+    $('#categories').on('select2:select', function (e) {
+    var data = e.params.data;
+    companyCategory(data.id);
+});
 
     </script>
 

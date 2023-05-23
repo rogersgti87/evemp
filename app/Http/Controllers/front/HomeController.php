@@ -108,16 +108,19 @@ class HomeController extends Controller
                                 ->get();
 
         } else {
-        $companyCategories = DB::table('company_categories as cc')
-                                ->join('companies as co','cc.company_id','co.id')
+        $companyCategories = DB::table('companies as co')
+                                ->join('company_categories as cc','cc.company_id','co.id')
                                 ->join('categories as ca','cc.category_id','ca.id')
                                 ->join('users as u','co.user_id','u.id')
-                                ->select('cc.id','cc.category_id as category_id','cc.company_id as company_id',
+                                ->select('co.id',DB::raw("max(cc.category_id) as category_id, max(ca.slug) as slug, max(ca.name) as category_name"),
                                 'co.document','co.name','co.description','co.telephone','co.telephone',
                                 'co.whatsapp','co.instagram','co.facebook','co.youtube','co.site','co.google_maps',
-                                'co.slug as company_slug','co.image','co.status','ca.slug','ca.name as category_name')
+                                'co.slug as company_slug','co.image','co.status')
                                 ->where('u.status',1)
                                 ->where('co.status',1)
+                                ->groupby('co.id','co.document','co.name','co.description','co.telephone','co.telephone',
+                                'co.whatsapp','co.instagram','co.facebook','co.youtube','co.site','co.google_maps',
+                                'co.slug','co.image','co.status')
                                 ->get();
         }
 
@@ -149,5 +152,20 @@ class HomeController extends Controller
         }
         return view('front.modal-company',compact('company','company_image'))->render();
     }
+
+
+    public function getCategories(Request $request){
+
+        $category = $request->input('category');
+
+        $result = Category::whereraw("name LIKE '%$category%'")
+        ->orderby('name','ASC')
+        ->take(20)
+        ->get();
+        return response()->json($result);
+
+
+    }
+
 
 }

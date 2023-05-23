@@ -29,6 +29,7 @@ Route::group(['middleware' => 'doNotCacheResponse'], function(){
     Route::post('/register-user',[HomeController::class, 'storeuser']);
     Route::get('/getcompaniescategory/{slug?}',[HomeController::class, 'getcompanycategory']);
     Route::get('/getcompany/{slug?}',[HomeController::class, 'getcompany']);
+    Route::get('/getcategories',[HomeController::class, 'getcategories']);
     Route::get('/contact',[ContactController::class,'index']);
 
 });
