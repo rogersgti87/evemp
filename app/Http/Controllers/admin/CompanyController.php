@@ -244,6 +244,13 @@ class CompanyController extends Controller
         $newCompany->image              = $data['image'];
         $newCompany->name               = $data['name'];
         $newCompany->description        = $data['description'];
+        $newCompany->cep                = $data['cep'];
+        $newCompany->number             = $data['number'];
+        $newCompany->district           = $data['district'];
+        $newCompany->city               = $data['city'];
+        $newCompany->state              = $data['state'];
+        $newCompany->complement         = $data['complement'];
+
 
         if(\Auth::user()->type == 'Membro'){
             $newCompany->status         = 0;
@@ -392,6 +399,12 @@ class CompanyController extends Controller
         $newCompany->image              = $data['image'];
         $newCompany->name               = $data['name'];
         $newCompany->description        = $data['description'];
+        $newCompany->cep                = $data['cep'];
+        $newCompany->number             = $data['number'];
+        $newCompany->district           = $data['district'];
+        $newCompany->city               = $data['city'];
+        $newCompany->state              = $data['state'];
+        $newCompany->complement         = $data['complement'];
 
         if(\Auth::user()->type == 'Membro'){
             unset($data['status']);

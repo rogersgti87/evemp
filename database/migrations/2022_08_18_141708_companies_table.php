@@ -19,6 +19,13 @@ return new class extends Migration
             $table->string('document')->unique();
             $table->string('name');
             $table->longText('description')->nullabe();
+            $table->string('cep')->nullable();
+            $table->string('address')->nullable();
+            $table->string('number')->nullable();
+            $table->string('complement')->nullable();
+            $table->string('district')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
             $table->string('telephone')->nullable();
             $table->string('email')->nullable();
             $table->string('whatsapp')->nullable();

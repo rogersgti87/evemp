@@ -167,6 +167,40 @@
                         <input type="text" class="form-control" name="name" id="name" autocomplete="off" required value="{{isset($data->name) ? $data->name : ''}}">
                     </div>
 
+                    <div class="form-group col-md-3 col-sm-12">
+                        <label>Cep</label>
+                        <input type="text" class="form-control" name="cep" id="cep" autocomplete="off" required value="{{isset($data->cep) ? $data->cep : ''}}">
+                    </div>
+
+                    <div class="form-group col-md-7 col-sm-12">
+                        <label>Endereço</label>
+                        <input type="text" class="form-control" name="address" id="address" autocomplete="off" required value="{{isset($data->address) ? $data->address : ''}}">
+                    </div>
+
+                    <div class="form-group col-md-2 col-sm-12">
+                        <label>Número</label>
+                        <input type="text" class="form-control" name="number" id="number" autocomplete="off" required value="{{isset($data->number) ? $data->number : ''}}">
+                    </div>
+
+                    <div class="form-group col-md-3 col-sm-12">
+                        <label>Bairro</label>
+                        <input type="text" class="form-control" name="district" id="district" autocomplete="off" required value="{{isset($data->district) ? $data->district : ''}}">
+                    </div>
+
+                    <div class="form-group col-md-3 col-sm-12">
+                        <label>Cidade</label>
+                        <input type="text" class="form-control" name="city" id="city" autocomplete="off" required value="{{isset($data->city) ? $data->city : ''}}">
+                    </div>
+
+                    <div class="form-group col-md-3 col-sm-12">
+                        <label>Estado</label>
+                        <input type="text" class="form-control" name="state" id="state" autocomplete="off" required value="{{isset($data->state) ? $data->state : ''}}">
+                    </div>
+
+                    <div class="form-group col-md-3 col-sm-12">
+                        <label>Complemento</label>
+                        <input type="text" class="form-control" name="complement" id="complement" autocomplete="off" required value="{{isset($data->complement) ? $data->complement : ''}}">
+                    </div>
 
                         <div class="form-group col-md-3 col-sm-12">
                             <label>Telefone</label>

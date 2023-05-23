@@ -70,47 +70,47 @@ $('#cnpjcpf').mask('000.000.000-000', options);
 // $('#atendimento_domingo').mask('00:00 - 00:00');
 
 
-// //Cep
-// $("#cep").blur(function () {
-//     var cep = $(this).val().replace(/\D/g, '');
-//     if (cep != "") {
-//         var validacep = /^[0-9]{8}$/;
-//         if (validacep.test(cep)) {
-//             $("#endereco").val("...");
-//             $("#bairro").val("...");
-//             $("#cidade").val("...");
-//             $("#uf").val("...");
-//             //Consulta o webservice viacep.com.br/
-//             $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
-//                 if (!("erro" in dados)) {
-//                     $("#endereco").val(dados.logradouro);
-//                     $("#bairro").val(dados.bairro);
-//                     $("#cidade").val(dados.localidade);
-//                     $("#uf").val(dados.uf);
-//                     $("#numero").focus();
-//                 } else {
-//                     $("#endereco").val("");
-//                     $("#bairro").val("");
-//                     $("#cidade").val("");
-//                     $("#uf").val("");
-//                     showMessage('danger','Cep não encontrado!');
-//                 }
-//             });
-//         } else {
-//             $("#endereco").val("");
-//             $("#bairro").val("");
-//             $("#cidade").val("");
-//             $("#uf").val("");
-//             showMessage('danger','Cep inválido!');
-//         }
-//     } else {
-//         //cep sem valor, limpa formulário.
-//         $("#endereco").val("");
-//         $("#bairro").val("");
-//         $("#cidade").val("");
-//         $("#uf").val("");
-//     }
-// });
+//Cep
+$("#cep").blur(function () {
+    var cep = $(this).val().replace(/\D/g, '');
+    if (cep != "") {
+        var validacep = /^[0-9]{8}$/;
+        if (validacep.test(cep)) {
+            $("#address").val("...");
+            $("#district").val("...");
+            $("#city").val("...");
+            $("#state").val("...");
+            //Consulta o webservice viacep.com.br/
+            $.getJSON("//viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+                if (!("erro" in dados)) {
+                    $("#address").val(dados.logradouro);
+                    $("#district").val(dados.bairro);
+                    $("#city").val(dados.localidade);
+                    $("#state").val(dados.uf);
+                    $("#number").focus();
+                } else {
+                    $("#address").val("");
+                    $("#district").val("");
+                    $("#city").val("");
+                    $("#state").val("");
+                    showMessage('danger','Cep não encontrado!');
+                }
+            });
+        } else {
+            $("#address").val("");
+            $("#district").val("");
+            $("#city").val("");
+            $("#state").val("");
+            showMessage('danger','Cep inválido!');
+        }
+    } else {
+        //cep sem valor, limpa formulário.
+        $("#address").val("");
+        $("#district").val("");
+        $("#city").val("");
+        $("#state").val("");
+    }
+});
 
 
 //check all checkbox
