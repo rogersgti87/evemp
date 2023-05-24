@@ -29,6 +29,24 @@
       <div class="container-fluid">
         <div class="row">
 
+            <div class="col-lg-12">
+
+                <div class="card card-primary card-outline">
+                  <div class="card-body d-flex justify-content-center">
+
+                    <a href="{{url('admin/users')}}" class="btn btn-app bg-success">
+                        <i class="fas fa-users"></i> Meu Perfil
+                    </a>
+
+                    <a href="{{url('admin/companies')}}" class="btn btn-app bg-warning">
+                        <i class="far fa-building"></i> Empresas
+                    </a>
+
+                  </div>
+                </div>
+            </div>
+
+
             @if(\Auth::user()->type == 'Usuario')
           <div class="col-lg-12">
 

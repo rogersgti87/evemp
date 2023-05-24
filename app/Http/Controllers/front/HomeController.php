@@ -70,7 +70,7 @@ class HomeController extends Controller
         $model->telephone       = $data['telephone'];
         $model->name            = $data['name'];
         $model->email           = $data['email'];
-        $model->status          = 0;
+        $model->status          = 1;
         $model->type            = 'Membro';
 
 
