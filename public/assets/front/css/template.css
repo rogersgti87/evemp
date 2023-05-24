@@ -389,3 +389,20 @@ header .header-title .btn-primary {
     top: 0;
     position: absolute;
 }
+#modal-company .nav-tabs {
+    border: 0;
+    margin-bottom: 5px;
+    padding: 0 10px;
+}
+
+#modal-company .nav-tabs .nav-link.active,
+#modal-company .nav-tabs .nav-item.show .nav-link {
+    border-radius: 5px;
+    border: 1px solid #00000042;
+    background: #fa8072;
+    color: #FFF !important;
+}
+
+#modal-company .nav-tabs .nav-link {
+    color: #fa8072;
+}

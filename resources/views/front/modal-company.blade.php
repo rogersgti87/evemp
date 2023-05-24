@@ -67,10 +67,10 @@
           </div>
           <div class="tab-pane fade" id="custom-tabs-two-profile" role="tabpanel" aria-labelledby="custom-tabs-two-profile-tab">
 
-            <div class="card card-danger">
-                <div class="card-header">
+            <div class="">
+
                 <h4 class="card-title">Contato</h4>
-                </div>
+
                 <div class="card-body">
                     <ul>
                         <li>Telefone: {{ $company->telephone }}</li>
@@ -85,12 +85,10 @@
                     </ul>
 
                 </div>
-                </div>
+
 
             <div class="card card-danger">
-                <div class="card-header">
                 <h4 class="card-title">Localização</h4>
-                </div>
                 <div class="card-body">
                     <div class="google-map">
                         {!! $company->google_maps !!}
