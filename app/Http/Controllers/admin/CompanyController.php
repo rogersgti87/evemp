@@ -198,6 +198,7 @@ class CompanyController extends Controller
             'description.required' => 'O Campo descrição da empresa é obrigatório',
             'telephone.required' => 'O Campo Telefone é obrigatório',
             'whatsapp.required' => 'O Campo Whatsapp é obrigatório',
+            'number.max' => 'O Campo número não pode ter mais do que 10 caracteres',
         ];
 
         $validator = Validator::make($data, [
@@ -206,6 +207,7 @@ class CompanyController extends Controller
             'description'   => "required",
             'telephone'     => "required",
             'whatsapp'      => "required",
+            'number'        => "required|max:10"
         ],$messages);
 
         if( $validator->fails() ){
@@ -353,6 +355,7 @@ class CompanyController extends Controller
             'description.required' => 'O Campo descrição da empresa é obrigatório',
             'telephone.required' => 'O Campo Telefone é obrigatório',
             'whatsapp.required' => 'O Campo Whatsapp é obrigatório',
+            'number.max' => 'O Campo número não pode ter mais do que 10 caracteres',
         ];
 
         $validator = Validator::make($data, [
@@ -361,6 +364,7 @@ class CompanyController extends Controller
             'description'   => "required",
             'telephone'     => "required",
             'whatsapp'      => "required",
+            'number'        => "required|max:10"
         ],$messages);
 
         if( $validator->fails() ){
