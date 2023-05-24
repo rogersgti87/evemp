@@ -1,5 +1,24 @@
 
 
+  <div class="col-12 col-sm-12">
+    <div class="card card-primary card-tabs">
+      <div class="card-header p-0 pt-1">
+        <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="custom-tabs-two-home-tab" data-toggle="pill" href="#custom-tabs-two-home" role="tab" aria-controls="custom-tabs-two-home" aria-selected="true">Empresa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="custom-tabs-two-profile-tab" data-toggle="pill" href="#custom-tabs-two-profile" role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false">Contato</a>
+          </li>
+          <li class="nav-item">
+          <a class="btn btn-sm btn-success" href="https://wa.me/55{{ removeEspeciais($company->whatsapp) }}?text=Olá, estou vindo através do site evemp.com.br!" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i> Fale conosco
+            </a>
+          </li>
+        </ul>
+      </div>
+
+
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -30,32 +49,18 @@
 
   </div>
 
-  <div class="heading-block">
-    <div style="border:#333 solid 1px; text-align:center;">
-    <img class="img-fluid" src="{{ $company->image_original != null ? url("$company->image_original") : url('assets/admin/img/thumb.png')}}" alt="{{ $company->name }}" style="max-height:99px;">
-    </div>
-  <h4 style="text-align: center;">{{$company->name}}</h4>
-</div>
-
-  <div class="col-12 col-sm-12">
-    <div class="card card-primary card-tabs">
-      <div class="card-header p-0 pt-1">
-        <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="custom-tabs-two-home-tab" data-toggle="pill" href="#custom-tabs-two-home" role="tab" aria-controls="custom-tabs-two-home" aria-selected="true">Sobre a empresa</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="custom-tabs-two-profile-tab" data-toggle="pill" href="#custom-tabs-two-profile" role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false">Contato</a>
-          </li>
-
-        </ul>
-      </div>
-
       <div class="card-body">
         <div class="tab-content" id="custom-tabs-two-tabContent">
           <div class="tab-pane fade show active" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
 
             <div class="">
+
+                <div class="heading-block">
+                    <div style="border:#333 solid 1px; text-align:center;">
+                    <img class="img-fluid" src="{{ $company->image_original != null ? url("$company->image_original") : url('assets/admin/img/thumb.png')}}" alt="{{ $company->name }}" style="max-height:99px;">
+                    </div>
+                  <h4 style="text-align: center;">{{$company->name}}</h4>
+                </div>
 
                 <h4 class="card-title">Descrição</h4>
 
@@ -101,9 +106,4 @@
       <!-- /.card -->
     </div>
   </div>
-
-  <a href="https://wa.me/55{{ removeEspeciais($company->whatsapp) }}?text=Olá, estou vindo através do site evemp.com.br!" style="position:absolute;width:50px;height:50px;bottom:20px;right:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888;
-    z-index:1000;" target="_blank">
-  <i class="fa-brands fa-whatsapp"></i>
-  </a>
 
