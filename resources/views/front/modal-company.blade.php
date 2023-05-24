@@ -55,10 +55,10 @@
         <div class="tab-content" id="custom-tabs-two-tabContent">
           <div class="tab-pane fade show active" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
 
-            <div class="card card-danger">
-            <div class="card-header">
-            <h4 class="card-title">Descrição</h4>
-            </div>
+            <div class="">
+
+                <h4 class="card-title">Descrição</h4>
+
             <div class="card-body">
                 {!! $company->description !!}
             </div>
