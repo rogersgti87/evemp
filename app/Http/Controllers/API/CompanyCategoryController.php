@@ -45,8 +45,8 @@ class CompanyCategoryController extends Controller
 
             foreach($companyCategories as $key => $result){
                 if(isJSON($result->image) == true){
-                    $companyCategories[$key]->image_thumb    = property_exists(json_decode($result->image), 'thumb')    ? json_decode($result->image)->thumb : '';
-                    $companyCategories[$key]->image_original = property_exists(json_decode($result->image), 'original') ? json_decode($result->image)->original : '';
+                    $companyCategories[$key]->image_thumb    = property_exists(json_decode($result->image), 'thumb')    ? \Config('app.url').json_decode($result->image)->thumb : '';
+                    $companyCategories[$key]->image_original = property_exists(json_decode($result->image), 'original') ? \Config('app.url').json_decode($result->image)->original : '';
                 }else{
                     $companyCategories[$key]->image_thumb    = '';
                     $companyCategories[$key]->image_original = '';
