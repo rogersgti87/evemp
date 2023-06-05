@@ -57,7 +57,7 @@
                   <h4 style="text-align: center;">{{$company->name}}</h4>
                 </div>
 
-                <h4 class="card-title">Descrição</h4>
+                {{-- <h4 class="card-title">Descrição</h4> --}}
 
             <div class="card-body">
                 {!! $company->description !!}
@@ -69,7 +69,7 @@
 
             <div class="">
 
-                <h4 class="card-title">Contato</h4>
+                {{-- <h4 class="card-title">Contato</h4> --}}
 
                 <div class="card-body">
 
