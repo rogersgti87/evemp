@@ -73,10 +73,11 @@
 
                 <div class="card-body">
 
-                    <a class="text-center btn btn-sm btn-success" href="https://wa.me/55{{ removeEspeciais($company->whatsapp) }}?text=Olá, estou vindo através do site evemp.com.br!" target="_blank">
+                    <div class="text-center p-4">
+                    <a class="btn-block btn btn-sm btn-success" href="https://wa.me/55{{ removeEspeciais($company->whatsapp) }}?text=Olá, estou vindo através do site evemp.com.br!" target="_blank">
                         <i class="fa-brands fa-whatsapp"></i> Fale conosco
                     </a>
-
+                    </div>
 
                     <ul>
                         <li>Telefone: {{ $company->telephone }}</li>
@@ -85,13 +86,15 @@
                     </ul>
 
                     <ul>
-                        <li>Facebook: <a href="{{$company->facebook }}" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
-                        <li>Instagram: <a href="{{$company->instagram }}" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
-                        <li>Youtube: <a href="{{$company->youtube }}" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+                        <li>Facebook: <i class="fa-brands fa-facebook"></i><a href="{{$company->facebook }}" target="_blank"></a></li>
+                        <li>Instagram: <i class="fa-brands fa-instagram"></i><a href="{{$company->instagram }}" target="_blank"></a></li>
+                        <li>Youtube: <i class="fa-brands fa-youtube"></i><a href="{{$company->youtube }}" target="_blank"></a></li>
                     </ul>
 
                     <ul>
-                        <li></li>
+                        <li>{{ $company->address.', '.$company->number }}</li>
+                        <li>{{ $company->district.' - '.$company->city.' '.$company->state.' '.$company->cep }}</li>
+                        <li>{{ $company->complement }}</li>
                     </ul>
 
                 </div>

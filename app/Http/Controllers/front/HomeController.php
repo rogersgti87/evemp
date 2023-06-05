@@ -101,7 +101,8 @@ class HomeController extends Controller
                                 ->select('cc.id','cc.category_id as category_id','cc.company_id as company_id',
                                 'co.document','co.name','co.description','co.telephone','co.telephone',
                                 'co.whatsapp','co.instagram','co.facebook','co.youtube','co.site','co.google_maps',
-                                'co.slug as company_slug','co.image','co.status','ca.slug','ca.name as category_name')
+                                'co.slug as company_slug','co.image','co.status','ca.slug','ca.name as category_name',
+                                'ca.cep','ca.address','ca.number','ca.complement','ca.district','city','ca.state')
                                 ->where('u.status',1)
                                 ->where('co.status',1)
                                 ->where('ca.slug',$slug)

@@ -255,7 +255,7 @@ class CompanyController extends Controller
 
 
         if(\Auth::user()->type == 'Membro'){
-            $newCompany->status         = 0;
+            $newCompany->status         = 1;
         }else{
             $newCompany->status             = $data['status'];
         }
