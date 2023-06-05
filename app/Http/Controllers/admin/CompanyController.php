@@ -247,6 +247,7 @@ class CompanyController extends Controller
         $newCompany->name               = $data['name'];
         $newCompany->description        = $data['description'];
         $newCompany->cep                = $data['cep'];
+        $newCompany->address            = $data['address'];
         $newCompany->number             = $data['number'];
         $newCompany->district           = $data['district'];
         $newCompany->city               = $data['city'];
@@ -404,6 +405,7 @@ class CompanyController extends Controller
         $newCompany->name               = $data['name'];
         $newCompany->description        = $data['description'];
         $newCompany->cep                = $data['cep'];
+        $newCompany->address             = $data['address'];
         $newCompany->number             = $data['number'];
         $newCompany->district           = $data['district'];
         $newCompany->city               = $data['city'];
