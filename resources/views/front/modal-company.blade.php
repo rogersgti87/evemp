@@ -10,11 +10,6 @@
           <li class="nav-item">
             <a class="nav-link" id="custom-tabs-two-profile-tab" data-toggle="pill" href="#custom-tabs-two-profile" role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false">Contato</a>
           </li>
-          <li class="nav-item">
-          <a class="btn btn-sm btn-success" href="https://wa.me/55{{ removeEspeciais($company->whatsapp) }}?text=Olá, estou vindo através do site evemp.com.br!" target="_blank">
-            <i class="fa-brands fa-whatsapp"></i> Fale conosco
-            </a>
-          </li>
         </ul>
       </div>
 
@@ -62,7 +57,9 @@
                   <h4 style="text-align: center;">{{$company->name}}</h4>
                 </div>
 
-                <h4 class="card-title">Descrição</h4>
+                <h4 class="card-title">Descrição   <a class="btn btn-sm btn-success" href="https://wa.me/55{{ removeEspeciais($company->whatsapp) }}?text=Olá, estou vindo através do site evemp.com.br!" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Fale conosco
+                </a></h4>
 
             <div class="card-body">
                 {!! $company->description !!}
