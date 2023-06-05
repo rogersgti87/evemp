@@ -57,9 +57,7 @@
                   <h4 style="text-align: center;">{{$company->name}}</h4>
                 </div>
 
-                <h4 class="card-title">Descrição   <a class="btn btn-sm btn-success" href="https://wa.me/55{{ removeEspeciais($company->whatsapp) }}?text=Olá, estou vindo através do site evemp.com.br!" target="_blank">
-                    <i class="fa-brands fa-whatsapp"></i> Fale conosco
-                </a></h4>
+                <h4 class="card-title">Descrição</h4>
 
             <div class="card-body">
                 {!! $company->description !!}
@@ -74,6 +72,12 @@
                 <h4 class="card-title">Contato</h4>
 
                 <div class="card-body">
+
+                    <a class="text-center btn btn-sm btn-success" href="https://wa.me/55{{ removeEspeciais($company->whatsapp) }}?text=Olá, estou vindo através do site evemp.com.br!" target="_blank">
+                        <i class="fa-brands fa-whatsapp"></i> Fale conosco
+                    </a>
+
+
                     <ul>
                         <li>Telefone: {{ $company->telephone }}</li>
                         <li>Whatsapp: {{ $company->whatsapp }}</li>
@@ -81,9 +85,13 @@
                     </ul>
 
                     <ul>
-                        <li>Facebook: <a href="{{$company->facebook }}" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                        <li>Instagram: <a href="{{$company->instagram }}" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                        <li>Youtube: <a href="{{$company->youtube }}" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                        <li>Facebook: <a href="{{$company->facebook }}" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+                        <li>Instagram: <a href="{{$company->instagram }}" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li>Youtube: <a href="{{$company->youtube }}" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+                    </ul>
+
+                    <ul>
+                        <li></li>
                     </ul>
 
                 </div>
