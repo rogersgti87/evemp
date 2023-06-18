@@ -102,7 +102,7 @@ class HomeController extends Controller
                                 'co.document','co.name','co.description','co.telephone','co.telephone',
                                 'co.whatsapp','co.instagram','co.facebook','co.youtube','co.site','co.google_maps',
                                 'co.slug as company_slug','co.image','co.status','ca.slug','ca.name as category_name',
-                                'ca.cep','ca.address','ca.number','ca.complement','ca.district','city','ca.state')
+                                'co.cep','co.address','co.number','co.complement','co.district','city','co.state')
                                 ->where('u.status',1)
                                 ->where('co.status',1)
                                 ->where('ca.slug',$slug)
